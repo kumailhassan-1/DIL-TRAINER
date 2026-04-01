@@ -137,7 +137,7 @@
   <div id="ai-agent-widget"></div>
   <script>
     window.AIAgentWidgetConfig = {
-      apiBaseUrl: "http://localhost:8787",
+      apiBaseUrl: "https://ai-agent-nine-orpin.vercel.app",
       storageKey: "dil-ai-agent-widget",
       agent: {
         name: "DIL Assistant",
@@ -160,7 +160,7 @@
   <script>
     (function loadAIAgentWidgetScript() {
       var primary = document.createElement("script");
-      primary.src = "http://localhost:8787/widget.js";
+      primary.src = "https://ai-agent-nine-orpin.vercel.app/widget.js";
       primary.defer = true;
       primary.onerror = function () {
         var fallback = document.createElement("script");

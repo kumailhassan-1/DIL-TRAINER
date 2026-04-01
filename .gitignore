@@ -19,3 +19,4 @@ ai-agent/logs/*.ndjson
 Thumbs.db
 .vscode/
 .idea/
+.vercel

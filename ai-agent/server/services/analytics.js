@@ -2,18 +2,27 @@ const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
 
+function createNoopAnalytics() {
+  return {
+    logConversationEvent() {},
+    logFeedbackEvent() {},
+    logErrorEvent() {}
+  };
+}
+
 function createAnalytics({ enabled, privacyMode, logFile }) {
   if (!enabled) {
-    return {
-      logConversationEvent() {},
-      logFeedbackEvent() {},
-      logErrorEvent() {}
-    };
+    return createNoopAnalytics();
   }
 
   const resolvedPath = path.join(process.cwd(), logFile);
   const dir = path.dirname(resolvedPath);
-  fs.mkdirSync(dir, { recursive: true });
+
+  try {
+    fs.mkdirSync(dir, { recursive: true });
+  } catch (_error) {
+    return createNoopAnalytics();
+  }
 
   function digest(value) {
     return crypto.createHash("sha256").update(String(value || "")).digest("hex").slice(0, 16);
@@ -33,7 +42,11 @@ function createAnalytics({ enabled, privacyMode, logFile }) {
 
   function append(payload) {
     const line = `${JSON.stringify(payload)}\n`;
-    fs.appendFileSync(resolvedPath, line, "utf8");
+    try {
+      fs.appendFileSync(resolvedPath, line, "utf8");
+    } catch (_error) {
+      return;
+    }
   }
 
   return {
