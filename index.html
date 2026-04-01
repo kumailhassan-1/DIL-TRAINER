@@ -316,7 +316,7 @@
       primary.defer = true;
       primary.onerror = function () {
         var fallback = document.createElement("script");
-        fallback.src = "ai-agent/public/widget.js";
+        fallback.src = "https://ai-agent-nine-orpin.vercel.app/widget.js";
         fallback.defer = true;
         document.body.appendChild(fallback);
       };
