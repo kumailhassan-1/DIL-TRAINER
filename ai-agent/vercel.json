@@ -16,6 +16,10 @@
     {
       "src": "/demo.html",
       "dest": "/public/demo.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/demo.html"
     }
   ]
 }
