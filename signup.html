@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIL Trainer Sign Up</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;700&family=Fragment+Mono:ital@0;1&family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="auth.css" />
+  <link rel="stylesheet" href="theme-toggle.css" />
+</head>
+<body data-auth-mode="signup">
+  <div class="scroll-line" id="authScrollLine" aria-hidden="true"></div>
+  <div class="cursor-fx" id="cursorFx" aria-hidden="true">
+    <span class="cursor-ring"></span>
+    <span class="cursor-dot"></span>
+  </div>
+  <div class="auth-bg-shape shape-a" data-parallax="0.1" aria-hidden="true"></div>
+  <div class="auth-bg-shape shape-b" data-parallax="-0.08" aria-hidden="true"></div>
+  <div class="auth-noise" aria-hidden="true"></div>
+
+  <main class="auth-shell">
+    <section class="auth-hero scroll-reveal from-left" data-animate data-delay="0.03">
+      <p class="kicker">\\' DIL / DAILY INTENT LAB</p>
+      <h1>Create Account</h1>
+      <p class="subtitle">Sign up with email and password to create your own dashboard and secure your progress.</p>
+      <p class="hero-note">After sign up, verify your email before logging in.</p>
+    </section>
+
+    <section class="auth-card scroll-reveal from-right" data-animate data-delay="0.08">
+      <div class="mode-toggle" role="tablist" aria-label="Authentication mode">
+        <button id="showLoginBtn" class="mode-btn" type="button" role="tab" aria-selected="false">Login</button>
+        <button id="showSignupBtn" class="mode-btn is-active" type="button" role="tab" aria-selected="true">Sign Up</button>
+      </div>
+
+      <form id="signupForm" class="auth-form" novalidate>
+        <label for="signupEmail">Email</label>
+        <input id="signupEmail" type="email" autocomplete="email" required />
+
+        <label for="signupPassword">Password</label>
+        <input id="signupPassword" type="password" autocomplete="new-password" minlength="6" required />
+
+        <label for="signupConfirmPassword">Confirm Password</label>
+        <input id="signupConfirmPassword" type="password" autocomplete="new-password" minlength="6" required />
+
+        <button class="submit-btn" type="submit">Create Account</button>
+      </form>
+
+      <p id="authMessage" class="auth-message" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer scroll-reveal from-bottom" data-animate data-delay="0.11" aria-label="Site footer">
+    <div class="site-footer-inner">
+      <div class="site-footer-brand">
+        <p class="site-footer-kicker">' DIL / DAILY INTENT LAB</p>
+        <h2 class="site-footer-title">DIL</h2>
+        <p class="site-footer-copy">A consistency-first workspace for training, tracking, and steady progress every day.</p>
+      </div>
+
+      <div class="site-footer-columns">
+        <section class="site-footer-col" aria-label="Primary pages">
+          <h3>Pages</h3>
+          <a class="site-footer-link" href="index.html">Training Board</a>
+          <a class="site-footer-link" href="dashboard.html">Dashboard</a>
+          <a class="site-footer-link" href="guide.html">Guide</a>
+          <a class="site-footer-link" href="about.html">About</a>
+          <a class="site-footer-link" href="contact.html">Contact</a>
+        </section>
+
+        <section class="site-footer-col" aria-label="Training sections">
+          <h3>Training</h3>
+          <a class="site-footer-link" href="index.html#tasksSection">Training Boards</a>
+          <a class="site-footer-link" href="index.html#sessionSection">Session Mode</a>
+          <a class="site-footer-link" href="dashboard.html">Weekly Analytics</a>
+          <a class="site-footer-link" href="guide.html">Exercise Library</a>
+        </section>
+
+        <section class="site-footer-col" aria-label="Account links">
+          <h3>Account</h3>
+          <a class="site-footer-link" href="login.html">Login</a>
+          <a class="site-footer-link" href="signup.html">Sign Up</a>
+          <a class="site-footer-link" href="contact.html">Support</a>
+        </section>
+
+        <section class="site-footer-col" aria-label="Contact information">
+          <h3>Contact</h3>
+          <a class="site-footer-link" href="mailto:kumailhassanpixel@gmail.com">kumailhassanpixel@gmail.com</a>
+          <p class="site-footer-note">Questions, feedback, and collaboration are welcome.</p>
+        </section>
+      </div>
+    </div>
+
+    <div class="site-footer-bottom">
+      <p>© 2026 DIL Daily Intent Lab</p>
+      <div class="site-footer-social">
+        <a href="mailto:kumailhassanpixel@gmail.com">Email</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="auth.js"></script>
+  <script src="theme-toggle.js"></script>
+
+  <div id="ai-agent-widget"></div>
+  <script>
+    window.AIAgentWidgetConfig = {
+      apiBaseUrl: "http://localhost:8787",
+      storageKey: "dil-ai-agent-widget",
+      agent: {
+        name: "DIL Assistant",
+        avatarUrl: "",
+        welcomeMessage: "Hi, I am your DIL assistant. I can guide you through signup and next steps.",
+        subtitle: "Live AI support"
+      },
+      theme: {
+        mode: "auto",
+        primaryColor: "#0099ff"
+      },
+      labels: {
+        inputPlaceholder: "Ask before signup...",
+        sendButton: "Send",
+        clearButton: "Clear",
+        closeButton: "Close"
+      }
+    };
+  </script>
+  <script>
+    (function loadAIAgentWidgetScript() {
+      var primary = document.createElement("script");
+      primary.src = "http://localhost:8787/widget.js";
+      primary.defer = true;
+      primary.onerror = function () {
+        var fallback = document.createElement("script");
+        fallback.src = "ai-agent/public/widget.js";
+        fallback.defer = true;
+        document.body.appendChild(fallback);
+      };
+      document.body.appendChild(primary);
+    })();
+  </script>
+</body>
+</html>

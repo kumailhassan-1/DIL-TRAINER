@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIL Daily Trainer</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;700&family=Fragment+Mono:ital@0;1&family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="theme-toggle.css" />
+</head>
+<body>
+  <div class="scroll-line" id="scrollLine" aria-hidden="true"></div>
+  <div id="cursorFx" class="cursor-fx" aria-hidden="true">
+    <span class="cursor-ring"></span>
+    <span class="cursor-dot"></span>
+  </div>
+  <div class="bg-shape shape-a" data-parallax="0.16"></div>
+  <div class="bg-shape shape-b" data-parallax="-0.11"></div>
+  <div class="noise-layer" aria-hidden="true"></div>
+  <div class="cinema-vignette" aria-hidden="true"></div>
+
+  <div id="menuOverlay" class="menu-overlay" aria-hidden="true">
+    <div class="menu-backdrop" data-close-menu></div>
+    <aside class="menu-panel" role="dialog" aria-modal="true" aria-label="Quick menu">
+      <div class="menu-head">
+        <p class="brand-word">\\' DIL / DAILY INTENT LAB</p>
+        <button id="menuCloseBtn" class="ghost-btn menu-close-btn" type="button" data-distort>Close</button>
+      </div>
+
+      <nav class="menu-links" aria-label="Navigation">
+        <a class="menu-link" href="dashboard.html" data-distort>Dashboard Page</a>
+        <a class="menu-link" href="guide.html" data-distort>All Training Guide</a>
+        <a class="menu-link" href="about.html" data-distort>About Page</a>
+        <a class="menu-link" href="contact.html" data-distort>Contact Page</a>
+        <button class="menu-link" type="button" data-scroll-target="tasksSection" data-distort>Training Boards</button>
+      </nav>
+
+      <div class="menu-utilities">
+        <button class="solid-btn" type="button" data-menu-action="save" data-distort>Save Training</button>
+        <button class="solid-btn" type="button" data-menu-action="complete" data-distort>Complete Today</button>
+        <button class="ghost-btn" type="button" data-menu-action="reset" data-distort>Reset Today</button>
+      </div>
+    </aside>
+  </div>
+
+  <div id="appDialogOverlay" class="app-dialog-overlay" aria-hidden="true">
+    <div class="app-dialog-backdrop" data-dialog-close="cancel"></div>
+    <section
+      id="appDialogCard"
+      class="app-dialog-card panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="appDialogTitle"
+      aria-describedby="appDialogMessage"
+      data-tone="info"
+    >
+      <p class="section-count app-dialog-kicker">TRAINING NOTICE</p>
+      <h2 id="appDialogTitle">Notice</h2>
+      <p id="appDialogMessage" class="app-dialog-message">Message</p>
+      <div class="app-dialog-actions">
+        <button id="appDialogCancelBtn" class="ghost-btn" type="button">Cancel</button>
+        <button id="appDialogConfirmBtn" class="solid-btn" type="button">Okay</button>
+      </div>
+    </section>
+  </div>
+
+  <main class="app-shell">
+    <header class="top-nav scroll-reveal from-top" data-animate data-delay="0.02">
+      <p class="brand-word">\\' DIL / DAILY INTENT LAB</p>
+      <div class="nav-actions">
+        <p class="mono-note">Discipline is built in public, one day at a time.</p>
+        <p id="userEmailLabel" class="mono-note user-email">Signed in</p>
+        <a href="dashboard.html" class="ghost-btn nav-link-btn" data-distort>Dashboard</a>
+        <a href="guide.html" class="ghost-btn nav-link-btn" data-distort>Guide</a>
+        <a href="about.html" class="ghost-btn nav-link-btn" data-distort>About</a>
+        <a href="contact.html" class="ghost-btn nav-link-btn" data-distort>Contact</a>
+        <button id="menuToggleBtn" class="ghost-btn menu-toggle-btn" type="button" data-distort>Menu</button>
+      </div>
+    </header>
+
+    <section id="heroSection" class="hero scroll-reveal from-bottom" data-animate data-delay="0.04">
+      <p class="eyebrow">TRAINING PROTOCOL 2026</p>
+      <h1 class="hero-title">
+        <span>WE TRAIN</span>
+        <span>DISCIPLINE</span>
+        <span>EVERY DAY</span>
+      </h1>
+      <p class="hero-sub">Finish your exercises. Complete your tasks. Protect the streak.</p>
+      <p id="todayLabel" class="today-label"></p>
+      <div class="hero-actions">
+        <button id="resetDayBtn" class="ghost-btn" type="button" data-distort>Reset Today</button>
+        <button id="saveTrainingBtn" class="solid-btn" type="button" data-distort>Save Training</button>
+        <button id="markAllBtn" class="solid-btn" type="button" data-distort>Mark Everything Done</button>
+      </div>
+    </section>
+
+    <section class="ticker scroll-reveal from-bottom" data-animate data-delay="0.06" aria-label="Motivation ticker">
+      <div class="ticker-track">
+        <span>TRAIN WITH INTENT</span>
+        <span>COMPLETE WHAT YOU START</span>
+        <span>DISCIPLINE OVER MOOD</span>
+        <span>STACK SMALL WINS DAILY</span>
+        <span>TRAIN WITH INTENT</span>
+        <span>COMPLETE WHAT YOU START</span>
+      </div>
+    </section>
+
+    <section id="statsSection" class="stats-grid">
+      <article class="panel stat-card scroll-reveal from-left" data-animate data-delay="0.06" data-distort>
+        <h2>Today Progress</h2>
+        <div class="meter-track" role="progressbar" aria-label="Daily completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div id="progressBar" class="meter-fill"></div>
+        </div>
+        <p id="progressText" class="stat-value">0 / 0 done</p>
+      </article>
+
+      <article class="panel stat-card scroll-reveal from-bottom" data-animate data-delay="0.11" data-distort>
+        <h2>Consistency Streak</h2>
+        <p class="streak-number"><span id="streakValue">0</span> days</p>
+        <p id="streakHint" class="stat-subtext">Complete all items to start your streak.</p>
+      </article>
+
+      <article class="panel stat-card scroll-reveal from-right" data-animate data-delay="0.16" data-distort>
+        <h2>Energy Score</h2>
+        <p class="energy-number"><span id="energyValue">0</span>%</p>
+        <p id="energyHint" class="stat-subtext">Momentum builds with every completed item.</p>
+      </article>
+    </section>
+
+    <section id="tasksSection" class="boards">
+      <article class="panel list-panel scroll-reveal from-left" data-animate data-delay="0.1" data-distort>
+        <div class="section-head">
+          <h2>Training Exercises</h2>
+          <p id="exerciseCount" class="section-count"></p>
+        </div>
+        <ul id="exerciseList" class="item-list" aria-label="Training exercises"></ul>
+        <form id="exerciseForm" class="inline-form inline-form-stack">
+          <div class="inline-form-main">
+            <input id="exerciseInput" type="text" maxlength="80" placeholder="Add exercise, for example: 20 push-ups" list="exerciseSuggestions" required />
+            <button id="exerciseSubmitBtn" type="submit" class="solid-btn small-btn" data-distort>Add Exercise</button>
+            <button id="exerciseFormCancelBtn" type="button" class="ghost-btn small-btn" hidden data-distort>Cancel Edit</button>
+          </div>
+          <datalist id="exerciseSuggestions"></datalist>
+          <div class="exercise-detail-grid">
+            <label class="mini-field">Sets
+              <input id="exerciseSetsInput" type="number" min="1" max="20" step="1" placeholder="3" />
+            </label>
+            <label class="mini-field">Reps
+              <input id="exerciseRepsInput" type="number" min="1" max="300" step="1" placeholder="12" />
+            </label>
+            <label class="mini-field">Seconds
+              <input id="exerciseSecondsInput" type="number" min="5" max="1800" step="5" placeholder="45" />
+            </label>
+            <label class="mini-field">Rest (s)
+              <input id="exerciseRestInput" type="number" min="0" max="600" step="5" placeholder="60" />
+            </label>
+            <label class="mini-field">Difficulty
+              <select id="exerciseDifficultyInput">
+                <option value="easy">Easy</option>
+                <option value="medium" selected>Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </label>
+          </div>
+        </form>
+      </article>
+
+      <article class="panel list-panel scroll-reveal from-right" data-animate data-delay="0.14" data-distort>
+        <div class="section-head">
+          <h2>Daily Tasks</h2>
+          <p id="taskCount" class="section-count"></p>
+        </div>
+        <ul id="taskList" class="item-list" aria-label="Daily tasks"></ul>
+        <form id="taskForm" class="inline-form inline-form-stack">
+          <div class="inline-form-main">
+            <input id="taskInput" type="text" maxlength="80" placeholder="Add task, for example: Review notes" required />
+            <button id="taskSubmitBtn" type="submit" class="solid-btn small-btn" data-distort>Add Task</button>
+            <button id="taskFormCancelBtn" type="button" class="ghost-btn small-btn" hidden data-distort>Cancel Edit</button>
+          </div>
+        </form>
+      </article>
+    </section>
+
+    <section id="sessionSection" class="session-grid">
+      <article class="panel session-panel scroll-reveal from-left" data-animate data-delay="0.1" data-distort>
+        <div class="section-head">
+          <h2>Session Mode</h2>
+          <p id="sessionRound" class="section-count">Round 0 / 0</p>
+        </div>
+        <p id="sessionStatus" class="stat-subtext">Configure intervals and run a focused training block.</p>
+        <p id="sessionTimer" class="session-timer">00:00</p>
+        <p id="sessionPhase" class="session-phase">Idle</p>
+        <div class="session-config-grid">
+          <label class="mini-field">Work (s)
+            <input id="sessionWorkInput" type="number" min="10" max="3600" step="5" value="45" />
+          </label>
+          <label class="mini-field">Rest (s)
+            <input id="sessionRestInput" type="number" min="5" max="1800" step="5" value="20" />
+          </label>
+          <label class="mini-field">Rounds
+            <input id="sessionRoundsInput" type="number" min="1" max="50" step="1" value="6" />
+          </label>
+        </div>
+        <div class="hero-actions">
+          <button id="sessionStartBtn" type="button" class="solid-btn" data-distort>Start Session</button>
+          <button id="sessionPauseBtn" type="button" class="ghost-btn" data-distort disabled>Pause</button>
+          <button id="sessionResetBtn" type="button" class="ghost-btn" data-distort>Reset</button>
+        </div>
+      </article>
+
+      <div id="commandSection" class="closing-grid">
+        <article class="panel status-panel scroll-reveal from-right" data-animate data-delay="0.13" data-distort>
+          <h2>Daily Command</h2>
+          <p id="statusMessage" class="status-message" aria-live="polite"></p>
+        </article>
+
+        <article class="panel principle-panel scroll-reveal from-right" data-animate data-delay="0.17" data-distort>
+          <h2>Operating Principle</h2>
+          <p class="principle-copy">Do not wait for perfect conditions. Build momentum with one completed action, then another.</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer scroll-reveal from-bottom" data-animate data-delay="0.06" aria-label="Site footer">
+    <div class="site-footer-inner">
+      <div class="site-footer-brand">
+        <p class="site-footer-kicker">' DIL / DAILY INTENT LAB</p>
+        <h2 class="site-footer-title">DIL</h2>
+        <p class="site-footer-copy">A consistency-first workspace for training, tracking, and steady progress every day.</p>
+      </div>
+
+      <div class="site-footer-columns">
+        <section class="site-footer-col" aria-label="Primary pages">
+          <h3>Pages</h3>
+          <a class="site-footer-link" href="index.html" data-distort>Training Board</a>
+          <a class="site-footer-link" href="dashboard.html" data-distort>Dashboard</a>
+          <a class="site-footer-link" href="guide.html" data-distort>Guide</a>
+          <a class="site-footer-link" href="about.html" data-distort>About</a>
+          <a class="site-footer-link" href="contact.html" data-distort>Contact</a>
+        </section>
+
+        <section class="site-footer-col" aria-label="Training sections">
+          <h3>Training</h3>
+          <a class="site-footer-link" href="index.html#tasksSection" data-distort>Training Boards</a>
+          <a class="site-footer-link" href="index.html#sessionSection" data-distort>Session Mode</a>
+          <a class="site-footer-link" href="dashboard.html" data-distort>Weekly Analytics</a>
+          <a class="site-footer-link" href="guide.html" data-distort>Exercise Library</a>
+        </section>
+
+        <section class="site-footer-col" aria-label="Account links">
+          <h3>Account</h3>
+          <a class="site-footer-link" href="login.html" data-distort>Login</a>
+          <a class="site-footer-link" href="signup.html" data-distort>Sign Up</a>
+          <a class="site-footer-link" href="contact.html" data-distort>Support</a>
+        </section>
+
+        <section class="site-footer-col" aria-label="Contact information">
+          <h3>Contact</h3>
+          <a class="site-footer-link" href="mailto:kumailhassanpixel@gmail.com" data-distort>kumailhassanpixel@gmail.com</a>
+          <p class="site-footer-note">Questions, feedback, and collaboration are welcome.</p>
+        </section>
+      </div>
+    </div>
+
+    <div class="site-footer-bottom">
+      <div class="site-footer-bottom-inner">
+        <p>© 2026 DIL Daily Intent Lab</p>
+        <div class="site-footer-social">
+          <a href="mailto:kumailhassanpixel@gmail.com" data-distort>Email</a>
+          <a href="about.html" data-distort>About</a>
+          <a href="contact.html" data-distort>Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="app.js"></script>
+  <script src="theme-toggle.js"></script>
+
+  <div id="ai-agent-widget"></div>
+  <script>
+    window.AIAgentWidgetConfig = {
+      apiBaseUrl: "http://localhost:8787",
+      storageKey: "dil-ai-agent-widget",
+      agent: {
+        name: "DIL Assistant",
+        avatarUrl: "",
+        welcomeMessage: "Hi, I am your DIL assistant. I can help with training flow, dashboard guidance, and support.",
+        subtitle: "Live AI support"
+      },
+      theme: {
+        mode: "auto",
+        primaryColor: "#0099ff"
+      },
+      labels: {
+        inputPlaceholder: "Ask about this website...",
+        sendButton: "Send",
+        clearButton: "Clear",
+        closeButton: "Close"
+      }
+    };
+  </script>
+  <script>
+    (function loadAIAgentWidgetScript() {
+      var primary = document.createElement("script");
+      primary.src = "http://localhost:8787/widget.js";
+      primary.defer = true;
+      primary.onerror = function () {
+        var fallback = document.createElement("script");
+        fallback.src = "ai-agent/public/widget.js";
+        fallback.defer = true;
+        document.body.appendChild(fallback);
+      };
+      document.body.appendChild(primary);
+    })();
+  </script>
+</body>
+</html>

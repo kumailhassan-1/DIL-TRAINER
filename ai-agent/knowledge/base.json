@@ -1,0 +1,41 @@
+{
+  "brand": "DIL Daily Intent Lab helps users build consistency through simple daily training planning, execution, and progress tracking.",
+  "products": [
+    {
+      "name": "Training Board",
+      "description": "Plan daily exercises and tasks, track completion, and maintain consistency."
+    },
+    {
+      "name": "Dashboard",
+      "description": "See weekly analytics, streak status, challenge coverage, and badges."
+    },
+    {
+      "name": "Guide",
+      "description": "Browse exercise cards with visuals and practical movement tips."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How do I start using DIL?",
+      "answer": "Begin on Training Board, add daily exercises, and complete your items to build momentum."
+    },
+    {
+      "question": "How is streak calculated?",
+      "answer": "A streak increments when training days are completed, with optional freeze support if enabled."
+    },
+    {
+      "question": "Where can I get support?",
+      "answer": "Contact support directly by email at kumailhassanpixel@gmail.com."
+    }
+  ],
+  "policies": [
+    {
+      "title": "Data privacy",
+      "summary": "User chat analytics can run in privacy-first mode where message content is hashed and length-only."
+    },
+    {
+      "title": "Account access",
+      "summary": "Only verified email accounts should access protected dashboard experiences."
+    }
+  ]
+}

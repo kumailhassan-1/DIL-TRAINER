@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: production-ai-agent-widget
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: NODE_ENV
+        value: production
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
+      - key: CORS_ORIGINS
+        sync: false
+      - key: ENABLE_ANALYTICS
+        value: true
+      - key: ANALYTICS_PRIVACY_MODE
+        value: true

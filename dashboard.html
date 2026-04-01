@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIL User Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;700&family=Fragment+Mono:ital@0;1&family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="theme-toggle.css" />
+</head>
+<body>
+  <div class="scroll-line" id="scrollLine" aria-hidden="true"></div>
+  <div id="cursorFx" class="cursor-fx" aria-hidden="true">
+    <span class="cursor-ring"></span>
+    <span class="cursor-dot"></span>
+  </div>
+  <div class="bg-shape shape-a" data-parallax="0.12" aria-hidden="true"></div>
+  <div class="bg-shape shape-b" data-parallax="-0.09" aria-hidden="true"></div>
+  <div class="noise-layer" aria-hidden="true"></div>
+
+  <div id="dashboardDialogOverlay" class="app-dialog-overlay" aria-hidden="true">
+    <div class="app-dialog-backdrop" data-dashboard-dialog-close="cancel"></div>
+    <section
+      id="dashboardDialogCard"
+      class="app-dialog-card panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dashboardDialogTitle"
+      aria-describedby="dashboardDialogMessage"
+      data-tone="warning"
+      data-distort
+    >
+      <p class="section-count app-dialog-kicker">CONFIRM ACTION</p>
+      <h2 id="dashboardDialogTitle">Log Out?</h2>
+      <p id="dashboardDialogMessage" class="app-dialog-message">Are you sure you want to log out?</p>
+      <div class="app-dialog-actions">
+        <button id="dashboardDialogCancelBtn" class="ghost-btn" type="button" data-distort>Cancel</button>
+        <button id="dashboardDialogConfirmBtn" class="solid-btn" type="button" data-distort>Log Out</button>
+      </div>
+    </section>
+  </div>
+
+  <main class="app-shell dashboard-shell">
+    <header class="top-nav scroll-reveal from-top" data-animate data-delay="0.02">
+      <p class="brand-word">\' DIL / USER DASHBOARD</p>
+      <div class="nav-actions">
+        <p id="dashboardUserEmail" class="mono-note user-email">Signed in</p>
+        <a href="index.html" id="dashboardPlannerBtn" class="ghost-btn nav-link-btn" role="button" data-distort>Training Board</a>
+        <a href="guide.html" id="dashboardGuideBtn" class="ghost-btn nav-link-btn" role="button" data-distort>Guide Page</a>
+        <a href="about.html" id="dashboardAboutBtn" class="ghost-btn nav-link-btn" role="button" data-distort>About</a>
+        <a href="contact.html" id="dashboardContactBtn" class="ghost-btn nav-link-btn" role="button" data-distort>Contact</a>
+        <button id="dashboardLogoutBtn" class="ghost-btn" type="button" data-distort>Log Out</button>
+      </div>
+    </header>
+
+    <section class="hero dashboard-hero scroll-reveal from-bottom" data-animate data-delay="0.05">
+      <p class="eyebrow">PERSONAL DASHBOARD</p>
+      <h1 class="hero-title">
+        <span>DASHBOARD</span>
+      </h1>
+      <p class="hero-sub">Your analytics, streak protection, and badges are shown per signed-in user.</p>
+    </section>
+
+    <section class="session-grid">
+      <article class="panel analytics-panel scroll-reveal from-left" data-animate data-delay="0.08" data-distort>
+        <div class="section-head">
+          <h2>Weekly Analytics</h2>
+          <p id="dashboardWeeklyCompletion" class="section-count">0 / 7 complete days</p>
+        </div>
+        <p id="dashboardVolume" class="stat-value">0 volume points in 7 days</p>
+        <p id="dashboardPb" class="stat-subtext">0 personal best markers</p>
+        <div id="dashboardVolumeTrend" class="volume-trend" aria-label="Weekly volume trend"></div>
+        <div id="dashboardBalance" class="balance-list" aria-label="Muscle group balance"></div>
+      </article>
+
+      <article class="panel stat-card scroll-reveal from-right" data-animate data-delay="0.12" data-distort>
+        <h2>Current Streak</h2>
+        <p class="streak-number"><span id="dashboardStreakValue">0</span> days</p>
+        <p class="stat-subtext">Streak includes protected freeze days when used.</p>
+      </article>
+    </section>
+
+    <section class="panel history-panel scroll-reveal from-bottom" data-animate data-delay="0.1" data-distort>
+      <div class="section-head">
+        <h2>Last 7 Days</h2>
+        <p class="section-count">Completion and freeze protection</p>
+      </div>
+      <div id="dashboardHistoryGrid" class="history-grid"></div>
+    </section>
+
+    <section class="motivation-grid">
+      <article class="panel motivation-panel scroll-reveal from-left" data-animate data-delay="0.12" data-distort>
+        <div class="section-head motivation-head">
+          <h2>Weekly Momentum</h2>
+          <p id="dashboardMotivationState" class="status-pill tone-neutral" aria-live="polite">Getting Started</p>
+        </div>
+        <p id="dashboardMotivationSummary" class="motivation-summary">Complete one session to kickstart this week.</p>
+
+        <div class="motivation-snapshot-grid">
+          <div class="motivation-snapshot">
+            <p class="snapshot-label">Goal Progress</p>
+            <p id="dashboardWeeklyGoal" class="snapshot-value">0 / 4 days</p>
+            <div
+              id="dashboardWeeklyGoalProgress"
+              class="motivation-progress-track"
+              role="progressbar"
+              aria-label="Weekly goal progress"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+            >
+              <span id="dashboardWeeklyGoalFill" class="motivation-progress-fill"></span>
+            </div>
+          </div>
+
+          <div class="motivation-snapshot">
+            <p class="snapshot-label">Freeze Credits</p>
+            <p id="dashboardFreezeCount" class="snapshot-value">0 available</p>
+            <p id="dashboardFreezeHint" class="snapshot-hint">Use on tough days to protect your streak.</p>
+          </div>
+        </div>
+
+        <p id="dashboardChallengeText" class="motivation-challenge" aria-live="polite">Challenge progress will show here.</p>
+      </article>
+
+      <article class="panel badges-panel scroll-reveal from-right" data-animate data-delay="0.16" data-distort>
+        <h2>Badges</h2>
+        <div id="dashboardBadgeList" class="badge-list"></div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer scroll-reveal from-bottom" data-animate data-delay="0.06" aria-label="Site footer">
+    <div class="site-footer-inner">
+      <div class="site-footer-brand">
+        <p class="site-footer-kicker">' DIL / DAILY INTENT LAB</p>
+        <h2 class="site-footer-title">DIL</h2>
+        <p class="site-footer-copy">A consistency-first workspace for training, tracking, and steady progress every day.</p>
+      </div>
+
+      <div class="site-footer-columns">
+        <section class="site-footer-col" aria-label="Primary pages">
+          <h3>Pages</h3>
+          <a class="site-footer-link" href="index.html" data-distort>Training Board</a>
+          <a class="site-footer-link" href="dashboard.html" data-distort>Dashboard</a>
+          <a class="site-footer-link" href="guide.html" data-distort>Guide</a>
+          <a class="site-footer-link" href="about.html" data-distort>About</a>
+          <a class="site-footer-link" href="contact.html" data-distort>Contact</a>
+        </section>
+
+        <section class="site-footer-col" aria-label="Training sections">
+          <h3>Training</h3>
+          <a class="site-footer-link" href="index.html#tasksSection" data-distort>Training Boards</a>
+          <a class="site-footer-link" href="index.html#sessionSection" data-distort>Session Mode</a>
+          <a class="site-footer-link" href="dashboard.html" data-distort>Weekly Analytics</a>
+          <a class="site-footer-link" href="guide.html" data-distort>Exercise Library</a>
+        </section>
+
+        <section class="site-footer-col" aria-label="Account links">
+          <h3>Account</h3>
+          <a class="site-footer-link" href="login.html" data-distort>Login</a>
+          <a class="site-footer-link" href="signup.html" data-distort>Sign Up</a>
+          <a class="site-footer-link" href="contact.html" data-distort>Support</a>
+        </section>
+
+        <section class="site-footer-col" aria-label="Contact information">
+          <h3>Contact</h3>
+          <a class="site-footer-link" href="mailto:kumailhassanpixel@gmail.com" data-distort>kumailhassanpixel@gmail.com</a>
+          <p class="site-footer-note">Questions, feedback, and collaboration are welcome.</p>
+        </section>
+      </div>
+    </div>
+
+    <div class="site-footer-bottom">
+      <div class="site-footer-bottom-inner">
+        <p>© 2026 DIL Daily Intent Lab</p>
+        <div class="site-footer-social">
+          <a href="mailto:kumailhassanpixel@gmail.com" data-distort>Email</a>
+          <a href="about.html" data-distort>About</a>
+          <a href="contact.html" data-distort>Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="page-effects.js"></script>
+  <script src="dashboard.js"></script>
+  <script src="theme-toggle.js"></script>
+
+  <div id="ai-agent-widget"></div>
+  <script>
+    window.AIAgentWidgetConfig = {
+      apiBaseUrl: "http://localhost:8787",
+      storageKey: "dil-ai-agent-widget",
+      agent: {
+        name: "DIL Assistant",
+        avatarUrl: "",
+        welcomeMessage: "Hi, I am your DIL assistant. I can explain your dashboard stats and suggest next actions.",
+        subtitle: "Live AI support"
+      },
+      theme: {
+        mode: "auto",
+        primaryColor: "#0099ff"
+      },
+      labels: {
+        inputPlaceholder: "Ask about your progress...",
+        sendButton: "Send",
+        clearButton: "Clear",
+        closeButton: "Close"
+      }
+    };
+  </script>
+  <script>
+    (function loadAIAgentWidgetScript() {
+      var primary = document.createElement("script");
+      primary.src = "http://localhost:8787/widget.js";
+      primary.defer = true;
+      primary.onerror = function () {
+        var fallback = document.createElement("script");
+        fallback.src = "ai-agent/public/widget.js";
+        fallback.defer = true;
+        document.body.appendChild(fallback);
+      };
+      document.body.appendChild(primary);
+    })();
+  </script>
+</body>
+</html>

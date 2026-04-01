@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIL About</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;700&family=Fragment+Mono:ital@0;1&family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="theme-toggle.css" />
+</head>
+<body>
+  <div class="scroll-line" id="scrollLine" aria-hidden="true"></div>
+  <div id="cursorFx" class="cursor-fx" aria-hidden="true">
+    <span class="cursor-ring"></span>
+    <span class="cursor-dot"></span>
+  </div>
+  <div class="bg-shape shape-a" data-parallax="0.12" aria-hidden="true"></div>
+  <div class="bg-shape shape-b" data-parallax="-0.09" aria-hidden="true"></div>
+  <div class="noise-layer" aria-hidden="true"></div>
+
+  <main class="app-shell info-shell">
+    <header class="top-nav scroll-reveal from-top" data-animate data-delay="0.02">
+      <p class="brand-word">' DIL / ABOUT</p>
+      <div class="nav-actions">
+        <p class="mono-note">Built to keep daily training simple and consistent.</p>
+        <a href="index.html" class="ghost-btn nav-link-btn" data-distort>Training Board</a>
+        <a href="dashboard.html" class="ghost-btn nav-link-btn" data-distort>Dashboard</a>
+        <a href="guide.html" class="ghost-btn nav-link-btn" data-distort>Guide</a>
+        <a href="contact.html" class="ghost-btn nav-link-btn" data-distort>Contact</a>
+      </div>
+    </header>
+
+    <section class="hero dashboard-hero scroll-reveal from-bottom" data-animate data-delay="0.05">
+      <p class="eyebrow">ABOUT THIS PROJECT</p>
+      <h1 class="hero-title">
+        <span>ABOUT DIL</span>
+      </h1>
+      <p class="hero-sub">DIL Daily Intent Lab is a focused training workspace for planning exercises, tracking streaks, and staying consistent with clear daily actions.</p>
+    </section>
+
+    <section class="info-grid">
+      <article class="panel info-card scroll-reveal from-left" data-animate data-delay="0.08" data-distort>
+        <div class="section-head">
+          <h2>What You Can Do</h2>
+          <p class="section-count">CORE FLOW</p>
+        </div>
+        <p class="info-copy">Use one place to plan, execute, and review your training day.</p>
+        <ul class="info-list">
+          <li>Add and manage training exercises with structure.</li>
+          <li>Track completion streaks and momentum every day.</li>
+          <li>Use session mode for timed focus blocks.</li>
+          <li>Review movement guidance in the full training guide.</li>
+        </ul>
+      </article>
+
+      <article class="panel info-card scroll-reveal from-right" data-animate data-delay="0.12" data-distort>
+        <div class="section-head">
+          <h2>Design Intent</h2>
+          <p class="section-count">HOW IT FEELS</p>
+        </div>
+        <p class="info-copy">The interface is intentionally clear, fast, and motivating so users can focus on action instead of clutter.</p>
+        <ul class="info-list">
+          <li>Bold typography and direct language for quick decisions.</li>
+          <li>Progress-first cards that highlight what matters now.</li>
+          <li>Smooth reveal motion and cursor interactions for feedback.</li>
+          <li>A practical layout that works on desktop and mobile.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="stats-grid">
+      <article class="panel stat-card scroll-reveal from-left" data-animate data-delay="0.1" data-distort>
+        <h2>Step 1</h2>
+        <p class="info-copy">Set your daily exercises and tasks on Training Board.</p>
+      </article>
+
+      <article class="panel stat-card scroll-reveal from-bottom" data-animate data-delay="0.14" data-distort>
+        <h2>Step 2</h2>
+        <p class="info-copy">Run Session Mode and complete items with consistency.</p>
+      </article>
+
+      <article class="panel stat-card scroll-reveal from-right" data-animate data-delay="0.18" data-distort>
+        <h2>Step 3</h2>
+        <p class="info-copy">Review dashboard trends and adjust tomorrow's plan.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer scroll-reveal from-bottom" data-animate data-delay="0.06" aria-label="Site footer">
+    <div class="site-footer-inner">
+      <div class="site-footer-brand">
+        <p class="site-footer-kicker">' DIL / DAILY INTENT LAB</p>
+        <h2 class="site-footer-title">DIL</h2>
+        <p class="site-footer-copy">A consistency-first workspace for training, tracking, and steady progress every day.</p>
+      </div>
+
+      <div class="site-footer-columns">
+        <section class="site-footer-col" aria-label="Primary pages">
+          <h3>Pages</h3>
+          <a class="site-footer-link" href="index.html" data-distort>Training Board</a>
+          <a class="site-footer-link" href="dashboard.html" data-distort>Dashboard</a>
+          <a class="site-footer-link" href="guide.html" data-distort>Guide</a>
+          <a class="site-footer-link" href="about.html" data-distort>About</a>
+          <a class="site-footer-link" href="contact.html" data-distort>Contact</a>
+        </section>
+
+        <section class="site-footer-col" aria-label="Training sections">
+          <h3>Training</h3>
+          <a class="site-footer-link" href="index.html#tasksSection" data-distort>Training Boards</a>
+          <a class="site-footer-link" href="index.html#sessionSection" data-distort>Session Mode</a>
+          <a class="site-footer-link" href="dashboard.html" data-distort>Weekly Analytics</a>
+          <a class="site-footer-link" href="guide.html" data-distort>Exercise Library</a>
+        </section>
+
+        <section class="site-footer-col" aria-label="Account links">
+          <h3>Account</h3>
+          <a class="site-footer-link" href="login.html" data-distort>Login</a>
+          <a class="site-footer-link" href="signup.html" data-distort>Sign Up</a>
+          <a class="site-footer-link" href="contact.html" data-distort>Support</a>
+        </section>
+
+        <section class="site-footer-col" aria-label="Contact information">
+          <h3>Contact</h3>
+          <a class="site-footer-link" href="mailto:kumailhassanpixel@gmail.com" data-distort>kumailhassanpixel@gmail.com</a>
+          <p class="site-footer-note">Questions, feedback, and collaboration are welcome.</p>
+        </section>
+      </div>
+    </div>
+
+    <div class="site-footer-bottom">
+      <div class="site-footer-bottom-inner">
+        <p>© 2026 DIL Daily Intent Lab</p>
+        <div class="site-footer-social">
+          <a href="mailto:kumailhassanpixel@gmail.com" data-distort>Email</a>
+          <a href="about.html" data-distort>About</a>
+          <a href="contact.html" data-distort>Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="page-effects.js"></script>
+  <script src="theme-toggle.js"></script>
+
+  <div id="ai-agent-widget"></div>
+  <script>
+    window.AIAgentWidgetConfig = {
+      apiBaseUrl: "http://localhost:8787",
+      storageKey: "dil-ai-agent-widget",
+      agent: {
+        name: "DIL Assistant",
+        avatarUrl: "",
+        welcomeMessage: "Hi, I am your DIL assistant. Ask me about this project, features, or where to begin.",
+        subtitle: "Live AI support"
+      },
+      theme: {
+        mode: "auto",
+        primaryColor: "#0099ff"
+      },
+      labels: {
+        inputPlaceholder: "Ask about DIL...",
+        sendButton: "Send",
+        clearButton: "Clear",
+        closeButton: "Close"
+      }
+    };
+  </script>
+  <script>
+    (function loadAIAgentWidgetScript() {
+      var primary = document.createElement("script");
+      primary.src = "http://localhost:8787/widget.js";
+      primary.defer = true;
+      primary.onerror = function () {
+        var fallback = document.createElement("script");
+        fallback.src = "ai-agent/public/widget.js";
+        fallback.defer = true;
+        document.body.appendChild(fallback);
+      };
+      document.body.appendChild(primary);
+    })();
+  </script>
+</body>
+</html>
