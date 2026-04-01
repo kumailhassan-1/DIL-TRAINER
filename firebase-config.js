@@ -1,7 +1,7 @@
 // Replace these placeholders with your Firebase project credentials.
 // Create a project at https://console.firebase.google.com/
 window.firebaseConfig = {
-  apiKey: "AIzaSyBTO61lp4Qt2N_hVhznuhrYdYvnFYVK_p4",
+  apiKey: "YOUR_FIREBASE_API_KEY",
   authDomain: "daily-training-6656b.firebaseapp.com",
   projectId: "daily-training-6656b",
   storageBucket: "daily-training-6656b.appspot.com",
